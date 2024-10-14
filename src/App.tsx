@@ -1,6 +1,9 @@
 import { useState } from "react";
-import Products from "./components/products/Products";
+// import Products from "./components/products/Products";
 import Tabs from "./components/tabs/Tabs";
+import Laptop from "./components/products/Laptop";
+import Smartphone from "./components/products/Smartphone";
+import Fragrances from "./components/products/Fragrances";
 
 const App = () => {
   const [categoryItem, setCategoryItem] = useState<String>("laptops");
@@ -17,7 +20,13 @@ const App = () => {
 
       <div className='electronic-main container mx-auto'>
         <Tabs handleGetTextTab={handleGetTextTab} categoryItem={categoryItem} />
-        <Products categoryItem={categoryItem} />
+        {categoryItem === 'laptops' && <Laptop />}
+
+        {categoryItem === 'smartphones' && <Smartphone />}
+
+        {categoryItem === 'fragrances' && <Fragrances />}
+
+        {/* <Products categoryItem={categoryItem} /> */}
       </div>
     </div>
   );
