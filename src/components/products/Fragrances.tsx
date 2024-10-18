@@ -1,9 +1,26 @@
-import React from 'react'
+import React from "react";
+import ProductItem from "./ProductItem";
 
-function Fragrances() {
-  return (
-    <div>Fragrances</div>
-  )
+interface IFragrancesProps {
+  productList: any[];
 }
 
-export default Fragrances
+const Fragrances = ({ productList }: IFragrancesProps) => {
+  return (
+    <tbody>
+      {productList.length === 0 ? (
+        <tr>
+          <td className='text-center' colSpan={6}>
+            No data to display
+          </td>
+        </tr>
+      ) : (
+        productList.map((productItem) => (
+          <ProductItem key={productItem.id} productItem={productItem} />
+        ))
+      )}
+    </tbody>
+  );
+};
+
+export default Fragrances;

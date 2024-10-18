@@ -1,28 +1,33 @@
 import React from "react";
 import TabItem from "./TabItem";
 
+// Active: text-white bg-blue-700 active
+// Not Active: hover:text-gray-900 bg-gray-50 hover:bg-gray-100
+
 interface ITabsProps {
-  handleGetTextTab: any;
+  handleGetCategoryItem: any;
   categoryItem: any;
 }
 
-const categoryList = ["laptops", "smartphones", "fragrances"];
+const categoryElectronicList = ["all", "laptops", "smartphones", "fragrances"];
 
-const Tabs = ({ handleGetTextTab, categoryItem }: ITabsProps) => {
+const Tabs = ({ handleGetCategoryItem, categoryItem }: ITabsProps) => {
   return (
-    <div className='font-bold text-center text-gray-500 border-b border-gray-200 mb-6'>
-      <ul className='flex flex-wrap justify-center -mb-px'>
-        {categoryList &&
-          categoryList.map((item, index) => (
-            <TabItem
-              key={index}
-              text={item}
-              handleGetTextTab={handleGetTextTab}
-              categoryItem={categoryItem}
-            />
-          ))}
-      </ul>
-    </div>
+    <ul className='electronic-tabs flex-column space-y space-y-4 text-gray-500 me-4 mb-0'>
+      {categoryElectronicList &&
+        categoryElectronicList.map((item, index) => (
+          <TabItem
+            key={index}
+            className={`inline-flex items-center px-4 py-3 rounded-lg w-full capitalize ${
+              categoryItem === item
+                ? "text-white bg-blue-700 active"
+                : "hover:text-gray-900 bg-gray-50 hover:bg-gray-100"
+            }`}
+            textBtn={item}
+            handleGetCategoryItem={handleGetCategoryItem}
+          />
+        ))}
+    </ul>
   );
 };
 
